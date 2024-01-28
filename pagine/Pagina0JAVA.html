@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Installazine del JDK e compilazione di Java</h1>
+        <p>La prima cosa che si desidera ardentemente fare, nel momento in cui ci si mette a
+           studiare un linguaggio di programmazione è l'applicazione 'Hello world'. 
+           Di questo 
+           si sono preoccupati sempre con maggior impegno gli scrittori dei più svariati
+           linguaggi di alto livello al punto che, in particolare nei sistemi Windows,
+           l'installazione e l'esecuzione dell'ambiente di sviluppo non sono più 
+		   considerati un problema. Bene, ma le cose rimangono complesse e il fatto
+		   che ci pensino altri a risolvercele non toglie nulla a questa complessità;
+		   ci impedisce invece di formulare un giudizio critico sulla necessità 
+		   che abbiamo di accettare o meno questo livello di complesstà delle cose.
+		   Java, se affrontato sistematicamente e con metodo, non nasconde queste
+		   difficoltà, anche se c'è stata molta gente volenterosa che si è prodigata
+		   per offrirci ambienti di sviluppo grafici molto confortevoli e ricchi
+		   di funzionalità legate alla condivisione dei nostri progetti, Java resta 
+		   un linguaggio complesso che va studiato con attenzione in tutti i suoi
+		   dettagli per poterne padroneggiare le potenzialità e comprendere il
+		   comportamento.<br>
+           A tal proposito, il primo scoglio da superare è l'installazione del 
+           <strong>JDK</strong>, il Java Development Kit ovvero il vero motore 
+           che ci permette di scrivere del codice java sulla nostra macchina che 
+           possa venire compilato ed eseguito sulla macchina su cui lavoriamo e 
+           in seguito, distribuito, eventualmente. Il JDK, oggi, dom 23 ott 2022, 
+           è arrivato alla versione 19.0.1 ma la versione che ha portato Java ad 
+           implementare tutte le moderne funzionalità di un linguaggio di programmazione 
+		   a oggetti in maniera stabile ed efficiente resta la versione 5.5, a detta 
+		   della maggior parte dei programmatori. Dal sito di Oracle, a oggi, questa 
+		   versione è ancora disponibile, non si sa ancora per quanto, a scopo 
+		   didattico resta comunque valida ma la procedura di download dal sito di 
+		   Oracle, a causa di alcune restrizioni sulla legge sulla privacy, non è
+		   facile da terminale, si possono però scaricare le versioni Open del JDK
+		   con le stesse funzionalità in modo molto più semplice o, in alternativa, 
+		   scaricare i pacchetti da installare sul proprio sistema.
+		   Questo è il tentativo di organizzare una procedura di installazione
+		   affidabile e stabile per la Java Virtual Machine di Oracle su sitemi operativi  
+		   LINUX. Il problema principale da superare è la gestione della licenza 
+		   di cui Oracle chiede l'approvazione che via terminale è piuttosto difficile 
+		   da gestire. D'altro canto, a oggi 28/04/2022, i file .deb spesso distribuiti
+		   per facilitare l'installazione del pacchetto, non sempre funzionano. 
+		   Un sito in inglese propone questa successione di comandi che ho adattato
+		   al mio sistema e ha funzionato in un caso abbastanza disperato. 
+		   Normalmente, comunque, l'installazione di openjdk dai repository consigliati, 
+		   non presenta particolari problemi, ammesso di sapersi desteggiare abbastanza
+		   bene con il terminale e le varie impostazioni dei sistemi LINUX.
+		   La directory /usr/java11 è stata creata per scaricare la versione 11 
+		   del jdk di Oracle nel formato *.tar.gz. Si noti che la decompressione 
+		   di tale archivio con il comando:
+		   <p><code>
+            $ sudo tar zxvf jdk-11.0.14_linux-x64_bin.tar.gz<br>
+          </p></code>
+          non produce l'installazione del 
+          jdk in automatico (almeno non sul mio Ubuntu) ma solo la decompressione delle 
+          cartelle dell'archivio. Ci posizioniamo perciò in tale directory
+          <p><code>
+            $ cd /usr/java11<br>
+          </p></code>
+
+          prepariamo la directory che accoglierà tutte le installazioni dei jdk
+          <p><code>
+            $ sudo mkdir -p /usr/lib/jvm<br>
+          </p></code>
+          copiamo al suo interno l'albero delle directory, precedentemente decompresse
+		  della nostra versione del jdk
+          <p><code>
+            $ sudo mv ./jdk-11.0.14 /usr/lib/jvm/<br>
+          </p></code>
+          diamo inizio all'installazione vera e propria
+          <p><code>
+            $ sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-11.0.14/bin/java" 1<br>
+            $ sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11.0.14/bin/javac" 1<br>
+            $ sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk-11.0.14/bin/javaws" 1<br>
+          </p></code>
+          modifichiamo i permessi delle cartelle di esecuzione di Java
+          <p><code>
+            $ sudo chmod a+x /usr/bin/java<br>
+            $ sudo chmod a+x /usr/bin/javac<br>
+            $ sudo chmod a+x /usr/bin/javaws<br>
+          </p></code>
+          a questo punto il programmatore suggerisce una modifica che mi lascia 
+		  dei dubbi: assegna all'utente root e al gruppo root la proprietà della
+		  cartella, io l'ho fatto per il jre versione 8 ma non per il jdk 11, 
+          suggerirei di usare cautela
+          <p><code>
+            $ sudo chown -R root:root /usr/lib/jvm/jre1.8.0_331<br>
+            $ sudo apt update
+          </p></code>
+          il seguente comando, in conclusione, permette di impostare da terminale 
+		  le versioni predefinite dei vari compilatori java (JDK) da utilizzare, per questo 
+		  scopo ci sono alternative migliori..
+          <p><code>
+            $ sudo update-alternatives --config java
+          </p></code>
+        </p>
+        <h2>Compilazione del codice</h2>
+		Superati i tormenti dell'installazione del JDK iniziano quelli per la 
+		compilazione del codice che abbiamo scritto.<br>
+		Il caso più banale che possa presentarsi è quello della tipica applicazione
+		'Hello World!" che diamo per scontata ma riproduciamo per chiarire come 
+		lavora il compilatore della Java Virtual Machine e la stessa JVM (Java Virtual
+		Machine) nell'esecuzione del codice.<br>
+		Andiamo dunque, creiamo la cartella HelloWorld e portiamoci al suo interno 
+		in un terminale di LINUX; per definire meglio ancora i campi di azione della
+		nostra applicazione creiamo anche la cartella CodiceSorgente all'interno 
+		della cartella principale HelloWorld.
+		<p><code>
+		$ cd ./HelloWorld/<br>
+		/HelloWorld$ mkdir CodiceSorgente<br>
+		/HelloWorld$ cd ./CodiceSorgente<br>
+		/HelloWorld/CodiceSorgente$<br>
+		</p></code>
+		Lanciamo il nostro editor di testo preferito (xed in questo caso) per creare il file 'HelloWorld.java'
+		<p><code>
+		/HelloWorld$ xed HelloWorld.java 
+		</p></code>
+		Il file HelloWorld.java conterrà il seguente tessto:
+		<p><pre>
+		public class HelloWorld
+		{
+			public static void main(String[] args)
+			{
+				System.out.printf("Saluti a tutti, stiamo programmando in java %n");
+			}
+		}
+		</p></pre>
+		Salviamo il file e verificihiamo il contenuto della cartella lanciando il 
+		comando 'ls'.
+		<p><code>
+		/HelloWorld/CodiceSorgente$ ls<br>
+		HelloWorld.java<br>
+		</p></code>
+		Come si vede nella nostra cartella è presente il file .java che contiene 
+		le istruzioni, scritte in linguaggio Java, che vogliamo far eseguire alla 
+		macchina, nello specifico visualizzare sul monitor 'printf' un semplice 
+		messaggio di saluto. Però tentando di lanciare il comando non succede 
+		nient'altro che l'apertura del file con l'editor di testo senza che venga 
+		visualizzato alcun messaggio. Perché? Perché questo file non è eseguibile
+		senza l'intermediazione del compilatore di Java che converte il nostro file 
+		in codice binario eseguibile dalla macchina su cui stiamo lavorando e memorizzato 
+		in un file con estensione '.class' che è il vero file eseguibile del nostro 
+		programma. Come si ottiene questo file? Lanciando il comando javac da console
+		seguito dal nome del file .java che si trova nella directory in cui stiamo
+		lavorando cioè: './CodiceSorgente'
+		<p><pre>
+        /HelloWorld/CodiceSorgente$ javac HelloWorld.java
+        /HelloWorld/CodiceSorgente$
+		</p></pre>
+		Ora controlliamo nuovamente il contenuto della cartella e osserviamo che 
+		al nostro file HelloWorld.java si è aggiunto il file HelloWorld.class
+		<p><pre>
+        /HelloWorld/CodiceSorgente$ ls
+        <mark>HelloWorld.class</mark>  HelloWorld.java
+		</p></pre>
+		A questo punto la chiamata del comando Java, seguita dal nome, anche senza
+		estensione, del file HelloWorld causerà l'esecuzione del codice in esso 
+		contenuto e l'ottenimento del risultato desiderato.
+		<p><pre>
+		/HelloWorld/CodiceSorgente$ java HelloWorld
+		<mark>Saluti a tutti, stiamo programmando in java </mark>
+		/HelloWorld/CodiceSorgente$ 
+		</p></pre>
+		
+		Solo che il file effettivamente invocato dalla chiamata della JVM (Java Virtual
+		Machine) non sarà il nostro HelloWorld.java ma il neo arrivato HelloWorld<mark>.class</mark>. La comprensione di questo fatto è propedeutica alla 
+		comprensione di tutto il meccanismo delle chiamate al compilatore e alla sua 
+		semantica e anche a quella delle chiamate in modalità più avanzata alla 
+		JVM per l'esecuzione del codice.<br>
+		In assenza di un file *.class, la chiamata 
+		del comando 'java' non produce alcun effetto e, a meno di non specificare 
+		il percorso completo in cui questo file si trova con le modalità che vedremo,
+		neppure l'invocazione di un file *.class esistente in una directory diversa 
+		da quella in cui stiamo lavorando produrrà alcunchè.
+
+
+        
+    
+    <footer>
+        <details>
+            <summary>
+                <a href = "http://localhost:8000/index.html">Home</a><br>
+            </summary>
+            <details>
+                <summary>
+                    <a href = "#top">Top</a><br>
+                </summary>
+            </details>
+            <details>
+                <summary>
+                    <a href="http://localhost:8000/index.html">Pagina precedente</a><br>
+                </summary>
+            </details>
+            <details>
+                <summary>
+                    <a href="Pagina1Java.html">Pagina successiva</a><br>
+                </summary>
+            </details>    
+        </details>
+    </footer>    
+</body>        
+</html>
