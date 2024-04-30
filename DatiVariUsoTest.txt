@@ -1,0 +1,103 @@
+&name=Stringa+a+caso&value=12345
+
+application/xhtml+xml
+
+1713879255000
+
+true
+
+{Keep-Alive=[timeout=5, max=100], Accept-Ranges=[bytes], null=[HTTP/1.1 200 OK], Server=[Apache], Connection=[Upgrade, Keep-Alive], Last-Modified=[Mon, 22 Apr 2024 16:40:28 GMT], Content-Length=[436], Upgrade=[h2,h2c], Date=[Tue, 23 Apr 2024 13:34:15 GMT], Content-Type=[application/xhtml+xml]}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <title>Risultati dell'uso del metodo POST</title>
+</head>
+<body>
+
+<h1>Risultati dell'uso del metodo POST da un client remoto</h1>
+
+<p>Sono stati postati i seguenti name/value pairs:</p>
+
+<ul>
+<li id="text_0001"></li>
+<li></li>
+</ul>
+
+<hr />
+
+
+</body>
+</html>
+
+BUILD SUCCESSFUL (total time: 0 seconds)
+
+
+&name=Stringa+a+caso&value=12345
+
+text/html; charset=UTF-8
+
+1713879467000
+
+true
+
+{date=[Tue, 23 Apr 2024 13:37:47 GMT], null=[HTTP/1.1 200 OK], content-length=[928], set-cookie=[TestDomainCookie=domaintest; domain=.cafeaulait.org, TestPathCookie=%2Fbooks; expires=Tue, 23-Apr-2024 14:37:47 GMT; Max-Age=3600; path=/books, TestExpiresCookie=expiresinanhour; expires=Tue, 23-Apr-2024 14:37:47 GMT; Max-Age=3600, TestCookie=test123], server=[Apache], vary=[Accept-Encoding], content-type=[text/html; charset=UTF-8], content-style-type=[text/css]}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Query Results</title>
+</head>
+<body>
+
+<h1>Query Results</h1>
+
+<p>You submitted the following name/value pairs:</p>
+
+<ul>
+<li>name = Stringa a caso</li>
+<li>value = 12345
+</li>
+</ul>
+
+<p>
+The request included the following cookies:
+</p>
+
+<ul>
+</ul>
+
+<p>
+Here's the HTTP request header:
+</p>
+
+<pre>  
+USER_AGENT: Java/16.0.1
+HOST: www.cafeaulait.org
+ACCEPT: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+X_FORWARDED_PROTO: http
+X_FORWARDED_FOR: 82.56.162.2
+CONNECTION: close
+</pre>
+
+<p>
+Here's the complete body of the request:
+</p>
+
+<pre>&name=Stringa+a+caso&value=12345
+</pre>
+
+<hr />
+<p>Some links:</p>
+
+<a href="postquery.phtml">This Page</a>
+<a href="postquery2.phtml">Another Page</a>
+
+<hr />
+Last Modified July 25, 2004
+
+</body>
+</html>
+
+BUILD SUCCESSFUL (total time: 1 second)
+

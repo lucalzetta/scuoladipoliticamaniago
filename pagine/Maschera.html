@@ -10,12 +10,15 @@
             <h2>Una semplice maschera di immissione dati</h2>
         </hgroup>
         <p>
-        <form action="../Dati/DatiMaschera.txt">
+        <form action="TestPOST.xhtml#text_001" method="POST" target="blank" autocomplete="off" novalidate >
             <input type="text" id="text_001"></input>
             <label for="text_001">Casella in cui inserire del testo a caso</label>
             <input type="submit" value="Ok"></input>
             <input type="reset" value="Annulla"></input>
             <input type="file"></input>
+            <output for="text_001">
+            <label id="testo_casella"></label>
+            </output>
         </form>
         </p>
     </body>
